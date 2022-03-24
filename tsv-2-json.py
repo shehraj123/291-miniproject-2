@@ -1,9 +1,10 @@
 # References - https://www.geeksforgeeks.org/python-tsv-conversion-to-json/
 
 import json
-import codecs
 
 def tsv2json(name):
+    """
+    """
     filename = name + ".tsv"
     arr = []
     file = open(filename, 'r', encoding='utf-8')
@@ -30,6 +31,8 @@ def tsv2json(name):
     file.write(json.dumps(arr, indent=4))  
     file.close()
 
-filenames = ("title.basics", "title.principals", "title.ratings", "name.basics")
-for filename in filenames:
-    tsv2json(filename)
+def convert(files):
+    """
+    """
+    for filename in files:
+        tsv2json(filename)

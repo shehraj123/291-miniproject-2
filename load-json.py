@@ -1,12 +1,9 @@
 #https://www.youtube.com/watch?v=9N6a-VLBa2I
-
-from pymongo import MongoClient
-import pymongo
 import json
 
-def load(port):
-	client = MongoClient("localhost", port)
-
+def load(client):
+	"""
+	"""
 	db = client["291db"]
 
 	name_basics = db["name_basics"]
