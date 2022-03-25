@@ -3,6 +3,7 @@ import load_json
 import tsv_2_json
 from pymongo import MongoClient
 import pymongo
+import add_cast
 
 
 def main():
@@ -17,6 +18,8 @@ def main():
                 raise
             port = int(port)
             done = True
+        except KeyboardInterrupt:
+            break
         except:
             print("Enter valid port")
 
@@ -26,6 +29,9 @@ def main():
     tsv_2_json.convert(files)
 
     db = load_json.load(client)
+
+    print("add cast")
+    add_cast.addCast(db)
     
 
 main()    
