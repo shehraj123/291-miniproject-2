@@ -1,0 +1,10 @@
+__pycache__/add_cast.cpython-38.pyc
+__pycache__/load-json.cpython-38.pyc
+__pycache__/load_json.cpython-38.pyc
+__pycache__/tsv-2-json.cpython-38.pyc
+__pycache__/tsv_2_json.cpython-38.pyc
+mongoDBDataFolder/
+name.basics.json
+title.basics.json
+title.principals.json
+title.ratings.json
