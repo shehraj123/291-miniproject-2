@@ -20,12 +20,12 @@ def main():
         except:
             print("Enter valid port")
 
-    # Starting Client
-    client = MongoClient('localhost', port)
-    files = ("title.basics", "title.principals", "title.ratings", "name.basics")
-    tsv_2_json.convert(files)
+    # # Starting Client
+    # client = MongoClient('localhost', port)
+    # files = ("title.basics", "title.principals", "title.ratings", "name.basics")
+    # tsv_2_json.convert(files)
 
-    db = load_json.load(client)
+    # db = load_json.load(client)
     
 
 main()    
