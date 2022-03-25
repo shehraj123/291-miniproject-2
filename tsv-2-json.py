@@ -18,11 +18,19 @@ def tsv2json(name):
         for t, f in zip(titles, line.split('\t')):
 
             if t in ("primaryProfession", "knownForTitles", "genres", "characters"):
-                f = f.strip().split(',')
-                d[t] = f
+                if t == "characters":
+                    if f == '\\N':
+                        d[t] = f.strip().split(',')
+                    f = f[1:-1]
+                    f = f.strip().split(",")
+                    f = [f[i][1:-1] for i in range(len(f))]
+                    d[t] = f
+                else:
+                   f = f.strip().split(',')
+                   d[t] = f
             else:
-                d[t] = f.strip()  
-        
+                f = f.strip()
+                d[t] = f      
         arr.append(d)
           
     file.close()    
@@ -36,3 +44,6 @@ def convert(files):
     """
     for filename in files:
         tsv2json(filename)
+
+if __name__ == "__main__":
+    tsv2json("title.principals")        
