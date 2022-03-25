@@ -9,7 +9,6 @@ def addCast(db):
 	name_basics = db["name_basics"]
 	title_basics = db["title_basics"]
 	title_principals = db["title_principals"]
-	title_ratings = db["title_ratings"]
 
 	# https://stackoverflow.com/questions/25163658/mongodb-return-true-if-document-exists
 

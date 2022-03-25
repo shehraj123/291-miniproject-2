@@ -4,6 +4,7 @@ import tsv_2_json
 from pymongo import MongoClient
 import pymongo
 import add_cast
+import add_movie
 
 
 def main():
@@ -30,8 +31,10 @@ def main():
 
     db = load_json.load(client)
 
-    print("add cast")
-    add_cast.addCast(db)
+    # print("add cast")
+    # add_cast.addCast(db)
     
+    print("add movie")
+    add_movie.addMovie(db)
 
 main()    
