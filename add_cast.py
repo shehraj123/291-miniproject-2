@@ -38,8 +38,8 @@ def addCast(db):
 			"ordering": ordering,
 			"nconst": nconst,
 			"category": category,
-			"job": None,
-			"characters": None
+			"job": '\\N',
+			"characters": '\\N'
 		}
 
 		title_principals.insert_one(row)
