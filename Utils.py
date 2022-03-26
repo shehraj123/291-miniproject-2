@@ -38,7 +38,7 @@ def takeOption(num_options):
             while i not in op:
                 i = int(input("Choose: "))
             done = True 
-        except:
+        except ValueError:
             print("\nEnter valid number")
             i = 0
 
