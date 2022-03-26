@@ -1,0 +1,6 @@
+__pycache__/
+mongoDBDataFolder/
+name.basics.json
+title.basics.json
+title.principals.json
+title.ratings.json
