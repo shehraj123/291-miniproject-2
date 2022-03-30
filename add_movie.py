@@ -8,8 +8,11 @@ from pymongo import MongoClient
 '''
 def addMovie(db):
 
+	# variable for the collection
+	title_basics = db["title_basics"]
+
 	while True:
-		# Clear the screen and print the headers
+		# Clear the screen and print the header
 		shellClear()
 		header = "\t\t\tAdd movie\t\t\t"
 		printPrompt(header, "")
@@ -20,8 +23,6 @@ def addMovie(db):
 		sYear = input("Enter start year: ").strip()
 		runningTime = input("Enter running time: ").strip()
 		genres = input("Enter a list of space separated genres: ").strip().split()
-
-		title_basics = db["title_basics"]
 
 		# check valid input
 		validID = True
@@ -63,7 +64,7 @@ def addMovie(db):
 
 			print("Success!")
 			break
-		# Otherwise ask for input again
+		# Ask for input again
 		else:
 			print("Invalid input")
 			print("1. Try again")
