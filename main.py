@@ -14,6 +14,11 @@ from Utils import *
 
 def main():
     """
+    Main function for running the program.
+    Arguments:
+        N/A
+    Returns:
+        N/A    
     """
     # Getting port number
     done = False

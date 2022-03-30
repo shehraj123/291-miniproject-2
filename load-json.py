@@ -1,8 +1,14 @@
-#https://www.youtube.com/watch?v=9N6a-VLBa2I
+# References
+# https://www.youtube.com/watch?v=9N6a-VLBa2I
 import json
 
 def load(client):
 	"""
+	Loads the json files created by tsv2json into memory.
+	Arguments:
+		client - pymongo databse client
+	Returns:
+		db - pymongo database		
 	"""
 	db = client["291db"]
 
