@@ -4,7 +4,9 @@ from pymongo import MongoClient
 '''
 	This is the function that handles adding the movie to the database
 	It asks for input, then validates it.
-	If the input is valide, the movie is added to the database.
+	If the input is valid, the movie is added to the database.
+
+	Takes in the database as input
 '''
 def addMovie(db):
 

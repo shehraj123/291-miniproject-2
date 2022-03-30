@@ -10,9 +10,17 @@ from pymongo.collation import Collation
 	# https://pymongo.readthedocs.io/en/stable/examples/collations.html
 
 '''
+<<<<<<< HEAD
 	This is the function that handles adding the cast members to the database
 	It asks for input, then validates it.
 	If the input is valide, the movie is added to the database.
+=======
+	This is the function that handles adding a cast or crew member to the database
+	It asks for input, then validates it.
+	If the input is valid, the cast or crew member is added to the database.
+
+	Takes in the database as input
+>>>>>>> fdd691f809cc750cb61569aea54e01e8983bc388
 '''
 def addCast(db):
 	name_basics = db["name_basics"]
