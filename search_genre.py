@@ -1,14 +1,20 @@
 import pprint
 from pymongo import MongoClient
 from Utils import *
-
+'''
+            Search Genre is the intial function call which leads the user to input thier information and then calls the 
+            secounds printInfo function to perform a search with the given information
+'''
 def searchGenre(db):
+    # Clearing 
     shellClear()
     header = "\t\t\tSearch genres\t\t\t"
     printPrompt(header, "")    
     
+    # Asking for user input
     genre = input("Enter genre which you would like to search: ").strip().lower()
     
+    # Creating a loop for valid user input
     done = False
     while not done:
         try:        
@@ -21,6 +27,7 @@ def searchGenre(db):
         except ValueError:
             print('Enter valid range for votes')    
     
+    # Calling the secound function with the given user input
     printInfo(min_vote, genre, db)
 
     x = input("Press any key to exit...")
@@ -28,9 +35,18 @@ def searchGenre(db):
 
     
 """
+              printInfo takes the given user information and does a search within mangoDB with the given information
+              this function also is responsible for the printing of the information which the query returns
 """
 def printInfo(min_vote, genre, db):
-  
+    
+    # Matching numVotes when its greater then or equal to user min vote input
+    # Lookup is used to join the two needed tables based on the given attributes
+    # Unwinding - Replacing the merges
+    # Unwinding genre
+    # Getting the nessisary infomration out of the created table
+    # Matching based on genre
+    # Sorting as needed
     stage = [
 
         {
@@ -69,7 +85,6 @@ def printInfo(min_vote, genre, db):
             "$project": {
                 "primaryTitle": 1,
                 "genres": {"$toLower": "$genres"},
-                # "tconst" : 1,
                 "avgRating" : 1,
                 "numVotes" : 1
             }
@@ -86,9 +101,10 @@ def printInfo(min_vote, genre, db):
         }
     ]      
     
+    # Taking titles as the list of all the titiles from the search
     titles = db.title_ratings.aggregate(stage)
-    # titles = [title for title in titles]
     
+    # Itterating through all the titles
     i = 1
     for title in titles:    
         print('''
@@ -102,6 +118,6 @@ def printInfo(min_vote, genre, db):
 if __name__ == "__main__":
     from pymongo import MongoClient
 
-    client = MongoClient('localhost', 27012)
+    client = MongoClient('localhost', 27017)
     db = client["291db"]
     searchGenre(db)
