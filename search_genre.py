@@ -65,7 +65,7 @@ def printInfo(movies, min_vote, db):
         movie_id = movie["tconst"]
         
         
-        rating, votes = match_score(movie_id, min_vote, db)
+        rating, votes = match_score(movies, min_vote, db)
         
         print('''
         Movie Name: {} || Number Of Votes: {} || Score: {}
@@ -78,10 +78,10 @@ def printInfo(movies, min_vote, db):
 def match_score(movie_id, min_vote, db):
     stage2 = [
         {
-            "$match" : '$and' [
+            "$match" : {"$and":[
             {"tconst" : { "$in" : movie_id }},
             {"numVotes" : { "$gte" : min_vote }}
-        ]},
+        ]}},
 
         {
             "$project" : {
