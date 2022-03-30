@@ -8,7 +8,18 @@ def searchGenre(db):
     printPrompt(header, "")    
     
     genre = input("Enter genre which you would like to search: ").strip().lower()
-    min_vote = input("Enter a minimum vote count: ")
+    
+    done = False
+    while not done:
+        try:        
+            min_vote = int(input("Enter a minimum vote count: "))
+            if min_vote < 0:
+                raise ValueError
+            done = True    
+        except KeyboardInterrupt:
+            exit()
+        except ValueError:
+            print('Enter valid range for votes')    
     
     
 
@@ -18,85 +29,112 @@ def searchGenre(db):
 
     
     
+    # stage1 = [
+    #     {
+    #         "$unwind" : "$genres"  
+    #     },
+    #     {
+    #         "$project": {
+    #             "primaryName": {"$toLower": "$primaryTitle"},
+    #             "genres": {"$toLower": "$genres"},
+    #             "tconst" : "$tconst"
+    #         }
+    #     },
+    #     {
+    #         "$match" : {  
+                
+    #             "genres" : {
+    #                 "$eq": genre
+    #             }
+    #         }
+    #     }
+    # ]
+    
+    
+    
+    # movies = db.title_basics.aggregate(stage1)
+    
+    # all_results = [movie for movie in movies]
+    # movies = all_results
 
-    stage1 = [
+
+    # if len(movies) == 0:
+    #     print("No Movies Found.")
+    
+    # tconsts = [movie["tconst"] for movie in movies]
+    printInfo(min_vote, genre, db)
+
+    x = input("Press any key to exit...")
+    return
+
+    
+"""
+"""
+def printInfo(min_vote, genre, db):
+  
+    stage = [
+        
         {
-            "$unwind" : "$genres"  
+            "$lookup" :{
+                "from" : "title_basics",
+                "localField" : "tconst",
+                "foreignField": "tconst",
+                "as" : "name"
+            }
         },
+
+        {
+            "$unwind" : "$name"
+        },
+
+
+        {
+            "$replaceWith" : {
+                "$mergeObjects": [{"avgRating": "$averageRating", "numVotes": "$numVotes"}, "$name"]
+            }
+        },
+
+        {
+            "$unwind": "$genres"
+        },
+
         {
             "$project": {
-                "primaryName": {"$toLower": "$primaryTitle"},
+                "primaryTitle": {"$toLower": "$primaryTitle"},
                 "genres": {"$toLower": "$genres"},
-                "tconst" : "$tconst"
+                "tconst" : "$tconst",
+                "avgRating" : "$avgRating",
+                "numVotes" : "$numVotes"
             }
         },
+
         {
-            "$match" : {  
-                
-                "genres" : genre
+            "$match" : {
+                "$and": [{"numVotes" : {"$gte": min_vote}}, {"genres" : {"$eq" : genre}}] #
             }
+        },
+
+        {
+            "$sort" : {"avgRating" : -1}
         }
-    ]
+    ]      
     
+    titles = db.title_ratings.aggregate(stage)
+    # titles = [title for title in titles]
     
-    
-    movies = db.title_basics.aggregate(stage1)
-    
-    all_results = [movie for movie in movies]
-    movies = all_results
-
-
-    if len(movies) == 0:
-        print("No Movies Found.")
-    
-    for movie in movies:
-        printInfo(movie, min_vote, db)
-        break
-    
-"""
-"""
-def printInfo(movie, min_vote, db):
-        print(movie)
-        min_vote = int(min_vote)
-        movie_name = movie["primaryName"]
-        genre = movie["genres"]
-        movie_id = movie["tconst"]
-        
-        
-        rating, votes = match_score(movie_id, min_vote, db)
-        
+    i = 1
+    for title in titles:    
         print('''
-        Movie Name: {} || Number Of Votes: {} || Score: {}
-        '''.format(movie_name, votes, rating))
-        
-
-"""
-"""
-
-def match_score(movie_id, min_vote, db):
-    min_vote = int(min_vote)
-    stage2 = [
-        {
-            "$match" : {"$and":[
-            {"tconst" : movie_id},
-        ]}},
-        {
-            "$project" : {
-                "rating" : "$averageRating",
-                "votes" : "$numVotes"
-            }
-        }
-    ]
-
-    titles = list(db.title_ratings.aggregate(stage2))
-    title = titles[0]
-    
-    return title["rating"], title["votes"]
-
+        {}. Movie Name: {}
+            Number Of Votes: {}
+            Rating: {}\n\n
+        '''.format(i, title["primaryTitle"], title["numVotes"], title["avgRating"]))
+        i += 1
 
 
 if __name__ == "__main__":
     from pymongo import MongoClient
+
     client = MongoClient('localhost', 27012)
     db = client["291db"]
     searchGenre(db)
