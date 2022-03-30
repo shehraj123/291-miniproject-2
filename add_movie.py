@@ -1,4 +1,5 @@
 from Utils import *
+from pymongo import MongoClient
 
 def addMovie(db):
 
@@ -31,4 +32,9 @@ def addMovie(db):
 
 	title_basics.insert_one(row)
 
-	print("inserted")
+	print("Success!")
+
+if __name__ == "__main__":
+    client = MongoClient('localhost', 27012)
+    db = client["291db"]
+    addMovie(db)

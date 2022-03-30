@@ -21,7 +21,6 @@ def searchGenre(db):
         except ValueError:
             print('Enter valid range for votes')    
     
-    
     printInfo(min_vote, genre, db)
 
     x = input("Press any key to exit...")
@@ -98,11 +97,11 @@ def printInfo(min_vote, genre, db):
             Rating: {}\n\n
         '''.format(i, title["primaryTitle"], title["numVotes"], title["avgRating"]))
         i += 1
-        
 
 
 if __name__ == "__main__":
     from pymongo import MongoClient
-    client = MongoClient('localhost', 27248)
+
+    client = MongoClient('localhost', 27012)
     db = client["291db"]
     searchGenre(db)
