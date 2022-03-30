@@ -23,22 +23,19 @@ def searchGenre(db):
         {
             "$unwind" : "$genres"  
         },
-        
         {
             "$project": {
                 "primaryName": {"$toLower": "$primaryTitle"},
                 "genres": {"$toLower": "$genres"},
                 "tconst" : "$tconst"
             }
-        }, 
-
+        },
         {
             "$match" : {  
                 
                 "genres" : genre
             }
-        },
-
+        }
     ]
     
     
@@ -52,20 +49,21 @@ def searchGenre(db):
     if len(movies) == 0:
         print("No Movies Found.")
     
-    printInfo(movies, min_vote, db)
+    for movie in movies:
+        printInfo(movie, min_vote, db)
+        break
     
 """
 """
-def printInfo(movies, min_vote, db):
-
-    for movie in movies:
+def printInfo(movie, min_vote, db):
+        print(movie)
         min_vote = int(min_vote)
         movie_name = movie["primaryName"]
         genre = movie["genres"]
         movie_id = movie["tconst"]
         
         
-        rating, votes = match_score(movies, min_vote, db)
+        rating, votes = match_score(movie_id, min_vote, db)
         
         print('''
         Movie Name: {} || Number Of Votes: {} || Score: {}
@@ -76,29 +74,29 @@ def printInfo(movies, min_vote, db):
 """
 
 def match_score(movie_id, min_vote, db):
+    min_vote = int(min_vote)
     stage2 = [
         {
             "$match" : {"$and":[
-            {"tconst" : { "$in" : movie_id }},
-            {"numVotes" : { "$gte" : min_vote }}
+            {"tconst" : movie_id},
         ]}},
-
         {
             "$project" : {
                 "rating" : "$averageRating",
-                "votes " : "$numVotes"
+                "votes" : "$numVotes"
             }
         }
     ]
 
-    titles = db.title_ratings.aggregate(stage2)
+    titles = list(db.title_ratings.aggregate(stage2))
+    title = titles[0]
     
-    return [title["rating"] for title in titles], [title["votes"] for title in titles]
+    return title["rating"], title["votes"]
 
 
 
 if __name__ == "__main__":
     from pymongo import MongoClient
-    client = MongoClient('localhost', 27017)
+    client = MongoClient('localhost', 27012)
     db = client["291db"]
     searchGenre(db)
