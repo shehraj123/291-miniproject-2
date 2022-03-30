@@ -8,97 +8,100 @@ def searchGenre(db):
     printPrompt(header, "")    
     
     genre = input("Enter genre which you would like to search: ").strip().lower()
-    min_vote = input("Enter a minimum vote count: ")
     
+    done = False
+    while not done:
+        try:        
+            min_vote = int(input("Enter a minimum vote count: "))
+            if min_vote < 0:
+                raise ValueError
+            done = True    
+        except KeyboardInterrupt:
+            exit()
+        except ValueError:
+            print('Enter valid range for votes')    
     
+    printInfo(min_vote, genre, db)
 
-    name_basics = db["name_basics"]
-    title_basics = db["title_basics"]
-    title_principals = db["title_principals"]
+    x = input("Press any key to exit...")
+    return
 
     
-    
+"""
+"""
+def printInfo(min_vote, genre, db):
+  
+    stage = [
 
-    stage1 = [
         {
-            "$unwind" : "$genres"  
+            "$match" : {
+                "numVotes" : {
+                    "$gte" : min_vote
+                }
+            }
         },
         
+        {
+            "$lookup" :{
+                "from" : "title_basics",
+                "localField" : "tconst",
+                "foreignField": "tconst",
+                "as" : "name"
+            }
+        },
+
+        {
+            "$unwind" : "$name"
+        },
+
+
+        {
+            "$replaceWith" : {
+                "$mergeObjects": [{"avgRating": "$averageRating", "numVotes": "$numVotes"}, "$name"]
+            }
+        },
+
+        {
+            "$unwind": "$genres"
+        },
+
         {
             "$project": {
-                "primaryName": {"$toLower": "$primaryTitle"},
+                "primaryTitle": 1,
                 "genres": {"$toLower": "$genres"},
-                "tconst" : "$tconst"
-            }
-        }, 
-
-        {
-            "$match" : {  
-                
-                "genres" : genre
+                # "tconst" : 1,
+                "avgRating" : 1,
+                "numVotes" : 1
             }
         },
 
-    ]
-    
-    
-    
-    movies = db.title_basics.aggregate(stage1)
-    
-    all_results = [movie for movie in movies]
-    movies = all_results
-
-
-    if len(movies) == 0:
-        print("No Movies Found.")
-    
-    printInfo(movies, min_vote, db)
-    
-"""
-"""
-def printInfo(movies, min_vote, db):
-
-    for movie in movies:
-        min_vote = int(min_vote)
-        movie_name = movie["primaryName"]
-        genre = movie["genres"]
-        movie_id = movie["tconst"]
-        
-        
-        rating, votes = match_score(movies, min_vote, db)
-        
-        print('''
-        Movie Name: {} || Number Of Votes: {} || Score: {}
-        '''.format(movie_name, votes, rating))
-        
-
-"""
-"""
-
-def match_score(movie_id, min_vote, db):
-    stage2 = [
         {
-            "$match" : {"$and":[
-            {"tconst" : { "$in" : movie_id }},
-            {"numVotes" : { "$gte" : min_vote }}
-        ]}},
-
-        {
-            "$project" : {
-                "rating" : "$averageRating",
-                "votes " : "$numVotes"
+            "$match" : {
+                "genres" : {"$eq" : genre} 
             }
+        },
+
+        {
+            "$sort" : {"avgRating" : -1}
         }
-    ]
-
-    titles = db.title_ratings.aggregate(stage2)
+    ]      
     
-    return [title["rating"] for title in titles], [title["votes"] for title in titles]
-
+    titles = db.title_ratings.aggregate(stage)
+    # titles = [title for title in titles]
+    
+    i = 1
+    for title in titles:    
+        print('''
+        {}. Movie Name: {}
+            Number Of Votes: {}
+            Rating: {}\n\n
+        '''.format(i, title["primaryTitle"], title["numVotes"], title["avgRating"]))
+        i += 1
 
 
 if __name__ == "__main__":
     from pymongo import MongoClient
-    client = MongoClient('localhost', 27017)
+
+    client = MongoClient('localhost', 27012)
     db = client["291db"]
     searchGenre(db)
