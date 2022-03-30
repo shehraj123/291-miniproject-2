@@ -11,9 +11,6 @@ def searchTitles(db):
 
     keywords = input("Enter keywords to search for: ").strip().lower().split(" ")
     regex = ".*{}.*".format(".*".join(keywords))
-    title_basics = db["title_basics"]
-    title_principals = db["title_principals"]
-    title_ratings = db["title_ratings"]
 
     stage1 = [
         {
@@ -76,7 +73,7 @@ def searchTitles(db):
                 raise ValueError
             done = True    
         except KeyboardInterrupt:
-            break
+            exit()
         except ValueError:
             print("Enter valid index")    
     title = res[index - 1]

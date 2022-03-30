@@ -41,6 +41,7 @@ def main():
     db.title_basics.create_index([("tconst", pymongo.ASCENDING), ("primaryTitle", pymongo.ASCENDING)])
     db.title_principals.create_index([("tconst", pymongo.ASCENDING)])
     db.title_ratings.create_index([("numVotes", pymongo.ASCENDING)])
+    db.title_ratings.create_index([("tconst", pymongo.ASCENDING)])
 
     end = time.time()
     time_taken = (end - start) 

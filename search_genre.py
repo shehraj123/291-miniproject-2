@@ -21,47 +21,6 @@ def searchGenre(db):
         except ValueError:
             print('Enter valid range for votes')    
     
-    
-
-    name_basics = db["name_basics"]
-    title_basics = db["title_basics"]
-    title_principals = db["title_principals"]
-
-    
-    
-    # stage1 = [
-    #     {
-    #         "$unwind" : "$genres"  
-    #     },
-    #     {
-    #         "$project": {
-    #             "primaryName": {"$toLower": "$primaryTitle"},
-    #             "genres": {"$toLower": "$genres"},
-    #             "tconst" : "$tconst"
-    #         }
-    #     },
-    #     {
-    #         "$match" : {  
-                
-    #             "genres" : {
-    #                 "$eq": genre
-    #             }
-    #         }
-    #     }
-    # ]
-    
-    
-    
-    # movies = db.title_basics.aggregate(stage1)
-    
-    # all_results = [movie for movie in movies]
-    # movies = all_results
-
-
-    # if len(movies) == 0:
-    #     print("No Movies Found.")
-    
-    # tconsts = [movie["tconst"] for movie in movies]
     printInfo(min_vote, genre, db)
 
     x = input("Press any key to exit...")
@@ -73,6 +32,14 @@ def searchGenre(db):
 def printInfo(min_vote, genre, db):
   
     stage = [
+
+        {
+            "$match" : {
+                "numVotes" : {
+                    "$gte" : min_vote
+                }
+            }
+        },
         
         {
             "$lookup" :{
@@ -100,17 +67,17 @@ def printInfo(min_vote, genre, db):
 
         {
             "$project": {
-                "primaryTitle": {"$toLower": "$primaryTitle"},
+                "primaryTitle": 1,
                 "genres": {"$toLower": "$genres"},
-                "tconst" : "$tconst",
-                "avgRating" : "$avgRating",
-                "numVotes" : "$numVotes"
+                # "tconst" : 1,
+                "avgRating" : 1,
+                "numVotes" : 1
             }
         },
 
         {
             "$match" : {
-                "$and": [{"numVotes" : {"$gte": min_vote}}, {"genres" : {"$eq" : genre}}] #
+                "genres" : {"$eq" : genre} 
             }
         },
 
