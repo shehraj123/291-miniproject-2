@@ -37,6 +37,11 @@ def main():
     tsv_2_json.convert(files)
     
     db = load_json.load(client)
+    db.name_basics.create_index([("nconst", pymongo.ASCENDING)])
+    db.title_basics.create_index([("tconst", pymongo.ASCENDING), ("primaryTitle", pymongo.ASCENDING)])
+    db.title_principals.create_index([("tconst", pymongo.ASCENDING)])
+    db.title_ratings.create_index([("numVotes", pymongo.ASCENDING)])
+
     end = time.time()
     time_taken = (end - start) 
     print("Time taken: {:.1f} m {:.1f} s".format(time_taken//60, time_taken%60))
@@ -66,14 +71,10 @@ def main():
             search_cast.searchCast(db)
 
         elif choice == 4:
-            shellClear()
-            header = "\t\t\tSearch genres\t\t\t"
-            printPrompt(header, prompt)
+            search_genre.searchGenre(db)
 
         elif choice == 5:
-            shellClear()
-            header = "\t\t\tSearch titles\t\t\t"    
-            printPrompt(header, prompt)
+            search_titles.searchTitles(db)
 
         elif choice == 6:
             break

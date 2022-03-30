@@ -17,7 +17,7 @@ def tsv2json(name):
         d = {}
         for t, f in zip(titles, line.split('\t')):
 
-            if t in ("primaryProfession", "knownForTitles", "genres", "characters"):
+            if t in ("primaryProfession", "knownForTitles", "genres", "characters", "numVotes"):
                 if t == "characters":
                     if f == '\\N':
                         d[t] = f.strip().split(',')
@@ -25,6 +25,9 @@ def tsv2json(name):
                     f = f.strip().split(",")
                     f = [f[i][1:-1] for i in range(len(f))]
                     d[t] = f
+
+                elif t == "numVotes":
+                    d[t] = int(f.strip())    
                 else:
                    f = f.strip().split(',')
                    d[t] = f
