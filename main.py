@@ -58,18 +58,11 @@ def main():
         choice = takeOption(6)
 
         if choice == 1:
-            shellClear()
-            header = "\t\t\tAdd cast\t\t\t"
             add_cast.addCast(db)
         elif choice == 2:
-            shellClear()
-            header = "\t\t\tAdd movie\t\t\t"
             add_movie.addMovie(db)
 
         elif choice == 3:
-            shellClear()
-            header = "\t\t\tSearch cast/crew member\t\t\t"
-            printPrompt(header, prompt)
             search_cast.searchCast(db)
 
         elif choice == 4:

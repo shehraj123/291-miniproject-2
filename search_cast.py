@@ -1,7 +1,14 @@
 # https://stackoverflow.com/questions/6502541/mongodb-query-multiple-collections-at-once
 import pprint
+from Utils import *
 
 def searchCast(db):
+
+    # Intialization
+    shellClear()
+    header = "\t\t\tSearch cast/crew member\t\t\t"
+    printPrompt(header, "")
+
     name = input("Enter cast/crew member name: ").strip().lower()
 
     name_basics = db["name_basics"]
@@ -14,7 +21,9 @@ def searchCast(db):
                 "primaryName": {"$toLower": "$primaryName"},
                 "primaryProfession": "$primaryProfession",
                 "nconst" : "$nconst",
-                "knownForTitles" : "$knownForTitles"
+                "knownForTitles" : "$knownForTitles",
+                "birthYear" : "$birthYear",
+                "deathYear" : "$deathYear"
             }
         }, 
 
@@ -34,6 +43,8 @@ def searchCast(db):
     
     showInfo(casts, db)
 
+    x = input("\nPress any key to go back to menu...")
+
 """
 """
 def showInfo(casts, db):
@@ -43,17 +54,25 @@ def showInfo(casts, db):
         professions = cast["primaryProfession"]
         nconst = cast["nconst"]
         title_consts = cast["knownForTitles"]
+        bYear = cast["birthYear"]
+        dYear = cast["deathYear"]
         titles = getTitleInfo(title_consts, db)
         job_characters = [] # list of jobs and characters with corresponding indices in titles
         
         for tconst in title_consts:
-            job_characters.append(getJobChar(tconst, nconst, db))
+            job_char = getJobChar(tconst, nconst, db)
+            if job_char:
+                job_characters.append(job_char)
+            else:
+                job_characters.append(["", ""])
 
         print('''
         Name: {}
+        Born: {}
+        Died: {}
         Professions: {}
         Known for Titles: {}
-        '''.format(name, ", ".join(professions), printTitles(titles, job_characters)))
+        '''.format(name, bYear, dYear, ", ".join(professions), printTitles(titles, job_characters)))
         
 
 """
@@ -110,10 +129,10 @@ def getJobChar(tconst, nconst, db):
 
     res = db.title_principals.aggregate(stage3)
     res = [(r["job"], r["characters"]) for r in res]
-    toret = tuple()
     if len(res) >= 1:
-        toret = res[0]
-    return toret
+        return res[0]
+    else:
+        return None
 
 if __name__ == "__main__":
     from pymongo import MongoClient

@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Sun Mar 27 11:00:45 2022
+# Make data base, printed on Tue Mar 29 20:58:11 2022
 
 # Variables
 
@@ -16,6 +16,10 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# environment
+WSLENV = WT_SESSION::WT_PROFILE_ID
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -31,7 +35,8 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # makefile
-CURDIR := d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2
+CURDI 
+R := d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2
 # default
 SHELL := sh.exe
 # environment
@@ -41,7 +46,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 ONEDRIVE = C:\Users\shehr\OneDrive
 # environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
 # makefile (from `makefile', line 1)
 MAKEFILE_LIST :=  makefile
 # environment
@@ -53,12 +58,11 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-7d80b2e7-7213-408a-af1c-d46edcc5668b-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ea208bf5-f561-4894-8acc-43c645ef6385-sock
 # environment
-VSCODE_CWD = C:\Users\shehr\AppData\Local\Programs\Microsoft VS Code
+VSCODE_CWD = D:\Ualberta\Year 2\CMPUT 291\projects\291-miniproject-2
 # environment
-PATH = C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Program Files\Amazon Corretto\jdk1.8.0_292\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\MinGW\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\5.2\bin\;C:\Users\shehr\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\shehr\AppData\Local\ 
-Programs\Python\Python39\;C:\Users\shehr\AppData\Local\Microsoft\WindowsApps;C:\Users\shehr\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\shehr\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\shehr\AppData\Roaming\npm;C:\Program Files\nodejs;C:\Program Files (x86)\Vim\vim82;C:\Program Files (x86)\GnuWin32\bin;;C:\Users\shehr\AppData\Local\Programs\oh-my-posh\bin;C:\Users\shehr\AppData\Local\Programs\mongosh\
+PATH = C:\Program Files\WindowsApps\Microsoft.PowerShell_7.2.2.0_x64__8wekyb3d8bbwe;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Program Files\Amazon Corretto\jdk1.8.0_292\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\MinGW\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\5.2\bin\;C:\Users\shehr\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\shehr\AppData\Local\Programs\Python\Python39\;C:\Users\shehr\AppData\Local\Microsoft\WindowsApps;C:\Users\shehr\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\shehr\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\shehr\AppData\Roaming\npm;C:\Program Files (x86)\Vim\vim82;C:\Program Files (x86)\GnuWin32\bin;C:\Users\shehr\AppData\Local\Programs\oh-my-posh\bin;C:\Users\shehr\AppData\Local\Programs\mongosh\
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -67,6 +71,8 @@ PROCESSOR_ARCHITECTURE = x86
 USERPROFILE = C:\Users\shehr
 # environment
 ALLUSERSPROFILE = C:\ProgramData
+# environment
+LOGONSERVER = \\DESKTOP-1P7PUOB
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -80,7 +86,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 POSH_THEMES_PATH = C:\Users\shehr\AppData\Local\Programs\oh-my-posh\themes
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_36456_TUFNGSNMJYUWAYRP
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_7840_UQTGAUJLBPSSYOEI
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -92,11 +98,17 @@ DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
+WT_SESSION = 96904489-302e-4e5b-bba9-41368a894fd8
+# environment
 USERNAME = shehr
 # environment
 PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+POWERLINE_COMMAND = oh-my-posh
+# environment
+VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\shehr\AppData\Roaming\Code\CachedData\c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1
 # environment
@@ -104,7 +116,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
 # environment
-LOGONSERVER = \\DESKTOP-1P7PUOB
+CONDA_PROMPT_MODIFIER = False
 # environment
 ONEDRIVECONSUMER = C:\Users\shehr\OneDrive
 # environment
@@ -115,6 +127,8 @@ USERDOMAIN = DESKTOP-1P7PUOB
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
+# environment
+POSH_THEME = C:\Users\shehr\OneDrive\Documents\PowerShell\prompts\atomic.json
 # environment
 JAVA_HOME = C:\Program Files\Amazon Corretto\jdk1.8.0_292
 # default
@@ -128,7 +142,7 @@ PROGRAMFILES(X86) = C:\Program Files (x86)
 # environment
 LOCALAPPDATA = C:\Users\shehr\AppData\Local
 # environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+PSMODULEPATH = C:\Users\shehr\OneDrive\Documents\PowerShell\Modules;C:\Program Files\PowerShell\Modules;c:\program files\windowsapps\microsoft.powershell_7.2.2.0_x64__8wekyb3d8bbwe\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
 # default
 MAKE_COMMAND := make.exe
 # environment
@@ -155,15 +169,19 @@ MFLAGS = -Rrqp
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 SYSTEMROOT = C:\WINDOWS
-# automatic
+# automatic 
+
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-APPDATA = 
- C:\Users\shehr\AppData\Roaming
+APPDATA = C:\Users\shehr\AppData\Roaming
+# environment
+POSH_GIT_ENABLED = False
 # environment
 TEMP = C:\Users\shehr\AppData\Local\Temp
+# environment
+WT_PROFILE_ID = {574e775e-4f2a-5b96-ac1e-a2962a402336}
 # environment
 COMSPEC = C:\WINDOWS\system32\cmd.exe
 # default
@@ -179,8 +197,6 @@ SUFFIXES :=
 # environment
 SYSTEMDRIVE = C:
 # environment
-SESSIONNAME = Console
-# environment
 PROCESSOR_REVISION = 9e0a
 # environment
 VS140COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
@@ -191,11 +207,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 36456
+VSCODE_PID = 7840
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-1P7PUOB
 # variable set hash-table stats:
-# Load=90/1024=9%, Rehash=0, Collisions=9/110=8%
+# Load=98/1024=10%, Rehash=0, Collisions=10/118=8%
 
 # Pattern-specific Variable Values
 
@@ -203,41 +219,39 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-1P7PUOB
 
 # Directories
 
-# : could not be stat'd.
 # C:\Program Files\Common Files\Oracle\Java\javapath (key C:/Program Files/Common Files/Oracle/Java/javapath, mtime 1619761171): 6 files, no impossibilities.
-# C:\Program F 
-iles\Docker\Docker\resources\bin (key C:/Program Files/Docker/Docker/resources/bin, mtime 1623193423): 13 files, no impossibilities.
+# C:\Program Files\Docker\Docker\resources\bin (key C:/Program Files/Docker/Docker/resources/bin, mtime 1623193423): 13 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1622898672): 30 files, no impossibilities.
-# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1642055326): 155 files, no impossibilities.
-# . (key d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2, mtime 1648330361): 23 files, no impossibilities.
+# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1642055326): 155 files, no impossibi 
+lities.
+# . (key d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2, mtime 1648580553): 27 files, no impossibilities.
 # C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1603900537): 10 files, no impossibilities.
 # C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1631990273): 11 files, no impossibilities.
 # C:\Program Files\MongoDB\Server\5.2\bin\ (key C:/Program Files/MongoDB/Server/5.2/bin/, mtime 1646962835): 5 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1625884401): 144 files, no impossibilities.
-# C:\Program Files\nodejs (key C:/Program Files/nodejs, mtime 1631990273): 11 files, no impossibilities.
 # C:\Program Files\Amazon Corretto\jdk1.8.0_292\bin (key C:/Program Files/Amazon Corretto/jdk1.8.0_292/bin, mtime 1620079806): 55 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files\PuTTY\ (key C:/Program Files/PuTTY/, mtime 1630561938): 12 files, no impossibilities.
-# C:\Users\shehr\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/shehr/AppData/Local/Programs/Microsoft VS C 
-ode/bin, mtime 1646958824): 4 files, no impossibilities.
-# C:\Windows (key C:/Windows, mtime 1642916405): 127 files, no impossibilities.
+# C:\Users\shehr\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/shehr/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1646958824): 4 files, no impossibilities.
+# C:\Windows (key C:/Windows, mtime 1642916405): 128 files, no impossibilities.
 # C:\Users\shehr\AppData\Local\Programs\mongosh\ (key C:/Users/shehr/AppData/Local/Programs/mongosh/, mtime 1646962927): 8 files, no impossibilities.
 # C:\Users\shehr\AppData\Roaming\npm (key C:/Users/shehr/AppData/Roaming/npm, mtime 1631993036): 6 files, no impossibilities.
 # C:\Program Files (x86)\Vim\vim82 (key C:/Program Files (x86)/Vim/vim82, mtime 1632704726): 56 files, no impossibilities.
 # C:\Users\shehr\AppData\Local\Programs\oh-my-posh\bin (key C:/Users/shehr/AppData/Local/Programs/oh-my-posh/bin, mtime 1646903013): 3 files, no impossibilities.
 # C:\Users\shehr\AppData\Local\Programs\MiKTeX\miktex\bin\x64\ (key C:/Users/shehr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/, mtime 1627706077): 677 files, no impossibilities.
-# C:\ProgramData\DockerDesktop\version-bin (key C:/ProgramData/DockerDesktop/version-bin, mtime 1623193471): 2 files, no impossibilities.
+# C:\ProgramData\DockerDesktop\version-bin (key C:/ProgramData/DockerDesktop/version-bin, mtime 1623193471): 2 files, 
+ no impossibilities.
+# C:\Program Files\WindowsApps\Microsoft.PowerShell_7.2.2.0_x64__8wekyb3d8bbwe: could not be stat'd.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1613789339): 8 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1648400181): 3009 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1648605191): 3009 files, no impossibilities.
 # C:\Users\shehr\AppData\Local\Programs\Python\Python39\ (key C:/Users/shehr/AppData/Local/Programs/Python/Python39/, mtime 1631247641): 21 files, no impossibilities.
-# C:\Users\shehr\AppData\Local\Microsoft\WindowsApps (key C:/Users/shehr/AppData/Local/Microsoft/WindowsApps, mtime 1648015214): 36 files, no imposs 
-ibilities.
+# C:\Users\shehr\AppData\Local\Microsoft\WindowsApps (key C:/Users/shehr/AppData/Local/Microsoft/WindowsApps, mtime 1648015214): 36 files, no impossibilities.
 # C:\Program Files (x86)\VMware\VMware Player\bin\ (key C:/Program Files (x86)/VMware/VMware Player/bin/, mtime 1625876164): 4 files, no impossibilities.
 # C:\Users\shehr\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/shehr/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1646958839): 61 files, no impossibilities.
 # C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR (key C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR, mtime 1603900555): 5 files, no impossibilities.
 # C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1636519497): 5 files, no impossibilities.
 
-# 4507 files, no impossibilities in 30 directories.
+# 4501 files, no impossibilities in 29 directories.
 
 # Implicit Rules
 
@@ -251,7 +265,8 @@ all:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
-# variable set hash-table stats:
+# variable set hash 
+-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
@@ -263,7 +278,7 @@ all:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-26 15:32:04
+#  Last modified 2022-03-29 12:37:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -312,7 +327,7 @@ checkDB:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Mar 27 11:00:45 2022
+# Finished Make data base on Tue Mar 29 20:58:11 2022
 
  
 make.exe: *** No rule to make target `all'.  Stop.
