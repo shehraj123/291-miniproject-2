@@ -58,7 +58,7 @@ def main():
         header = "\t\t\tWelcome\t\t\t"
         prompt = """
             1. Add cast
-            2. Add movie
+            2. Add title
             3. Search cast/crew member
             4. Search genres
             5. Search titles
