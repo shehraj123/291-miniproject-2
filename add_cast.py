@@ -9,6 +9,11 @@ from pymongo.collation import Collation
 	# https://stackoverflow.com/questions/39815265/mongo-sort-by-string-value-that-is-actually-number
 	# https://pymongo.readthedocs.io/en/stable/examples/collations.html
 
+'''
+	This is the function that handles adding the cast members to the database
+	It asks for input, then validates it.
+	If the input is valide, the movie is added to the database.
+'''
 def addCast(db):
 	name_basics = db["name_basics"]
 	title_basics = db["title_basics"]
