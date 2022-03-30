@@ -1,0 +1,5 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory `d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2'
+python3 main.py
+make.exe: Leaving directory `d:/Ualberta/Year 2/CMPUT 291/projects/291-miniproject-2'
+ 
