@@ -9,6 +9,13 @@ from pymongo.collation import Collation
 	# https://stackoverflow.com/questions/39815265/mongo-sort-by-string-value-that-is-actually-number
 	# https://pymongo.readthedocs.io/en/stable/examples/collations.html
 
+'''
+	This is the function that handles adding a cast or crew member to the database
+	It asks for input, then validates it.
+	If the input is valid, the cast or crew member is added to the database.
+
+	Takes in the database as input
+'''
 def addCast(db):
 	name_basics = db["name_basics"]
 	title_basics = db["title_basics"]
