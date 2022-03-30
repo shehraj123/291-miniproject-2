@@ -1,5 +1,6 @@
 from Utils import *
 from pymongo import MongoClient
+from pymongo.collation import Collation
 
 def addCast(db):
 
@@ -36,14 +37,18 @@ def addCast(db):
 		if nameExists and titleExists:
 			# https://www.statology.org/mongodb-max-value/
 			# https://stackoverflow.com/questions/28968660/how-to-convert-a-pymongo-cursor-cursor-into-a-dict
-			cursor = title_principals.find().sort("ordering", -1).limit(1)
+			cursor = title_principals.find({"tconst": tconst}).sort("ordering", -1).collation(Collation(locale="en_US", numericOrdering=True)).limit(1)
+
 			l = []
 			for doc in cursor:
 				l.append(doc)
-			d = l[0]
-
-			ordering = int(d["ordering"])
-			ordering = str(ordering + 1)
+			try:
+				d = l[0]
+				ordering = int(d["ordering"])
+				print(ordering)
+				ordering = str(ordering + 1)
+			except IndexError:
+				ordering = "1"
 
 			row = {
 				"tconst": tconst,
