@@ -4,6 +4,11 @@ import json
 
 def tsv2json(name):
     """
+    Converts tab-seperated fiels into json with proper conversions.
+    Arguments:
+        name - name of tsv file
+    Returns:
+        None
     """
     filename = name + ".tsv"
     arr = []
@@ -44,6 +49,11 @@ def tsv2json(name):
 
 def convert(files):
     """
+    Conversion wrapper.
+    Arguments:
+        files - list of file names
+    Returns:
+        N/A
     """
     for filename in files:
         tsv2json(filename)

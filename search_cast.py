@@ -1,9 +1,17 @@
+# References
 # https://stackoverflow.com/questions/6502541/mongodb-query-multiple-collections-at-once
 import pprint
 from Utils import *
 
 def searchCast(db):
-
+    """
+    This function is for searching the cast/crew members based on name. Matches the
+    given name and filters out those unmatched.
+    Arguments:
+        db - pymongo database
+    Returns:
+        N/A    
+    """
     # Intialization
     shellClear()
     header = "\t\t\tSearch cast/crew member\t\t\t"
@@ -45,10 +53,16 @@ def searchCast(db):
 
     x = input("\nPress any key to go back to menu...")
 
-"""
-"""
 def showInfo(casts, db):
-
+    """
+    Display information such as name, birth year, death year and professions. Also 
+    displays the title the cast/crew worked in and their characters.
+    Arguments:
+        db - pymongo database
+        casts - list of all cast/crew members with the given name
+    Returns:
+        N/A
+    """
     for cast in casts:
         name = cast["primaryName"]
         professions = cast["primaryProfession"]
@@ -74,10 +88,15 @@ def showInfo(casts, db):
         Known for Titles: {}
         '''.format(name, bYear, dYear, ", ".join(professions), printTitles(titles, job_characters)))
         
-
-"""
-"""
 def printTitles(titles, job_characters):
+    """
+    Helper function for printing the titles and jobs in correct format.
+    Arguments: 
+        titles - list of tconst(title ids) the member worked in.
+        job_characters - corresponding list of jobs/characters enacted.
+    Returns:
+        res - Formatted string
+    """
     res = ""
     i = 1
     for title in titles:  
@@ -87,6 +106,14 @@ def printTitles(titles, job_characters):
     return res    
 
 def getTitleInfo(title_consts, db):
+    """
+    Get title names based on list of tconsts.
+    Arguments: 
+        title_consts - list of tconst(title ids)
+        db - pymongo database
+    Returns:
+        list of titles corresponding to tconsts
+    """
     stage2 = [
         {
             "$match" : {
@@ -109,6 +136,15 @@ def getTitleInfo(title_consts, db):
 
 
 def getJobChar(tconst, nconst, db):
+    """
+    Get job and characters enacted by the member.
+    Arguments: 
+        tconst - title id of the title the member worked in
+        nconst - member id of the person
+        db - pymongo database
+    Returns:
+        tuple of jobs and characters array if exists. otherwise None.    
+    """
     stage3 = [
         {
             "$match" : {
