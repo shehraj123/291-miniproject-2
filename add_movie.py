@@ -1,4 +1,12 @@
+from Utils import *
+
 def addMovie(db):
+
+	# Intialization
+	shellClear()
+	header = "\t\t\tAdd movie\t\t\t"
+	printPrompt(header, "")
+
 	tconst = input("Enter title id: ")
 	title = input("Enter a title: ")
 	sYear = input("Enter start year: ")

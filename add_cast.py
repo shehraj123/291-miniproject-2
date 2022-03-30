@@ -1,4 +1,12 @@
+from Utils import *
+
 def addCast(db):
+
+	# Intialization
+	shellClear()
+	header = "\t\t\tAdd cast\t\t\t"
+	printPrompt(header, "")
+
 	nconst = input("Enter cast/crew member ID: ").strip()
 	tconst = input("Enter title id: ").strip()
 	category = input("Enter category: ").strip()
